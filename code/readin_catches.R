@@ -4,8 +4,8 @@
 
 
 # Read in pre-prepared outputs of 1_results.R
-polydf = readOGR("data/polydf10km.shp")
-cands = read.csv("data/cands.csv")
+polydf = readOGR("data/results/polydf10km.shp")
+cands = read.csv("data/results/cands.csv")
 
 # Excluded rasters are attached to greedy() output for each case
 # (In plotting, they're equivalent to constraint_masks for access and forest above)

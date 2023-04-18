@@ -21,7 +21,7 @@ distcatches = SpatialPolygonsDataFrame(sp, data.frame(id=1:length(sp),
                                                       lat=all_pix[,"lat"]))
 
 
-writeOGR(distcatches, dsn="data", 
+writeOGR(distcatches, dsn="data/results", 
          layer="polydf10km", driver="ESRI Shapefile")
 
 ###############################################################################
@@ -50,7 +50,7 @@ cands = data.frame(uncert_uncon=static_select(mean_sd_prod, all_pix),
                    uncert_dist_catch=uncert_dist_catch$out_points,
                    precis_dist_catch=precis_dist_catch$out_points)
 
-write.csv(cands, "data/cands.csv")
+write.csv(cands, "data/results/cands.csv")
 
 
 
