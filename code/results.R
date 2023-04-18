@@ -26,6 +26,7 @@ writeOGR(distcatches, dsn="data/results",
 
 ###############################################################################
 # site selection ..
+polydf = readOGR("data/results/polydf10km.shp")
 
 # popped the greedy calls out ..
 uncert_dist=greedy_select_mindist(mean_sd_prod, all_pix, radius=50000) 

@@ -90,7 +90,6 @@ static_select = function(objective_surface, pointsdf, nsites=10, poly_flag=FALSE
                          verbose=FALSE, obj_col=FALSE){
   obj_vals = extract(objective_surface, as.data.frame(pointsdf[,c("lon", "lat")]))
   keeps = seq(1:nrow(pointsdf))[!is.na(obj_vals)]
-  message(length(keeps))
   pointsdf = pointsdf[keeps,]
   # this chunk was for removing excluded pixels from mean catchment calculations:
   #obj_vals = sapply(1:nrow(pointsdf), function(x){
