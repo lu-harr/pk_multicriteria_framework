@@ -39,19 +39,26 @@ kalimantan_ras = rasterize(kalimantan_shp, IDN_ras)
 nw_idn_ras = trim(merge(sumatera_ras, kalimantan_ras))
 
 # read in model outputs
-preds_sry_seasia = brick('data/model_out/SEAsia.tif')
-# grab sd raster - need to rewrite run_parasite to include in preds_sry
-preds_sd_seasia = brick('data/model_out/mean_sd_raster.tif')[[2]]
-# add sd and CIwidth of bootstraps into preds_sry
-preds_sry_seasia = addLayer(preds_sry_seasia, 
-                            preds_sd_seasia,
-                            preds_sry_seasia[[4]] - preds_sry_seasia[[3]])
-names(preds_sry_seasia) <- c('mean',
-                             'median',
-                             'lowerCI',
-                             'upperCI',
-                             'sd',
-                             'CIwidth')
+# preds_sry_seasia = brick('data/model_out/SEAsia.tif')
+# # grab sd raster - need to rewrite run_parasite to include in preds_sry
+# preds_sd_seasia = brick('data/model_out/mean_sd_raster.tif')[[2]]
+# # add sd and CIwidth of bootstraps into preds_sry
+# preds_sry_seasia = addLayer(preds_sry_seasia, 
+#                             preds_sd_seasia,
+#                             preds_sry_seasia[[4]] - preds_sry_seasia[[3]])
+# names(preds_sry_seasia) <- c('mean',
+#                              'median',
+#                              'lowerCI',
+#                              'upperCI',
+#                              'sd',
+#                              'CIwidth')
+# tmp = stack(preds_sry_seasia$mean,
+#             preds_sry_seasia$sd)
+# writeRaster(tmp,
+#             "data/model_out/model_mean_sd",
+#             format="GTiff")
+preds_sry_seasia = stack("data/model_out/model_mean_sd.tif")
+names(preds_sry_seasia) = c("mean", "sd")
 
 preds_sry_nw = mask(crop(preds_sry_seasia, nw_idn_ras), nw_idn_ras)
 
