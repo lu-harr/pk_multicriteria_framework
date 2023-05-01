@@ -52,11 +52,7 @@ nw_idn_ras = trim(merge(sumatera_ras, kalimantan_ras))
 #                              'upperCI',
 #                              'sd',
 #                              'CIwidth')
-# tmp = stack(preds_sry_seasia$mean,
-#             preds_sry_seasia$sd)
-# writeRaster(tmp,
-#             "data/model_out/model_mean_sd",
-#             format="GTiff")
+
 preds_sry_seasia = stack("data/model_out/model_mean_sd.tif")
 names(preds_sry_seasia) = c("mean", "sd")
 
@@ -67,7 +63,16 @@ preds_sry_nw = mask(crop(preds_sry_seasia, nw_idn_ras), nw_idn_ras)
 access_idn = raster("data/accessibility_raster_buffered.tif")
 access_idn = mask(crop(access_idn, nw_idn_ras), nw_idn_ras)
 
-seasia_covs <- brick('data/model_covs/SEAsia_covs.grd')
+# grab forest surfaces
+# seasia_covs <- brick('data/model_covs/SEAsia_covs.grd')
+# tmp = stack(seasia_covs$forest_disturbed,
+#             seasia_covs$forest_intact)
+# writeRaster(tmp,
+#             "data/model_covs/SEAsia_forest_layers",
+#             format="GTiff")
+seasia_forest = stack("data/model_covs/SEASia_forest_layers.tif")
+names(seasia_forest) = c("forest_disturbed",
+                         "forest_intact")
 
 malaysia_shp = malariaAtlas::getShp(country="Malaysia", admin_level = c("admin1"))
 brunei_shp = malariaAtlas::getShp(country="Brunei Darussalam")
