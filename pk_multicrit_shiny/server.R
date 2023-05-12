@@ -1,20 +1,7 @@
-# library(shiny)
-# library(viridisLite)
-# library(dplyr)
-# library(DT)
-# library(markdown)
-# library(raster)
-# library(plotfunctions)
-# library(sf)
-# library(RColorBrewer)
-# library(rgeos)
-# library(prodlim) # this was commented out ...
-# library(shinyjs)
-# library(shinyBS)
-# library(malariaAtlas)
-# library(dismo)
-
 source("run_me_first.R")
+
+# fixing up accepted values for numeric inputs ...
+# still something funny happening for forest
 
 server <- (function(input, output, session){
   
@@ -92,25 +79,23 @@ server <- (function(input, output, session){
   
   # stitch all the access inputs together
   observeEvent(input$access_thresh_slide, {
-    updateNumericInput(session, "access_thresh_nume_lower", value=input$access_thresh_slide[1])
-    updateNumericInput(session, "access_thresh_nume_upper", value=input$access_thresh_slide[2])
+    updateNumericInput(session, "access_thresh_nume_lower", 
+                       value=input$access_thresh_slide[1])
+    updateNumericInput(session, "access_thresh_nume_upper", 
+                       value=input$access_thresh_slide[2])
   })
   observeEvent(input$access_thresh_nume_lower, {
-    updateSliderInput(session, "access_thresh_slide", value=c(input$access_thresh_nume_lower,
-                                                              input$access_thresh_nume_upper))
+    updateSliderInput(session, "access_thresh_slide", 
+                      value=c(input$access_thresh_nume_lower,
+                              input$access_thresh_nume_upper))
   })
   observeEvent(input$access_thresh_nume_upper, {
-    updateSliderInput(session, "access_thresh_slide", value=c(input$access_thresh_nume_lower,
-                                                              input$access_thresh_nume_upper))
+    updateSliderInput(session, "access_thresh_slide", 
+                      value=c(input$access_thresh_nume_lower,
+                              input$access_thresh_nume_upper))
   })
   
-  # make changes to access mask when user edits access bounds
-  accessedit = eventReactive(input$update, {
-    tmp = access_idn
-    values(tmp)[values(access_idn) < quantile(tmp, input$access_thresh_slide[1]/100)] = NA
-    values(tmp)[values(access_idn) > quantile(tmp, input$access_thresh_slide[2]/100)] = NA
-    tmp
-  })
+  
   
   # forest: also one slider and two numeric inputs
   output$forest_thresh_s = renderUI({
@@ -148,6 +133,30 @@ server <- (function(input, output, session){
   observeEvent(input$forest_thresh_nume_upper, {
     updateSliderInput(session, "forest_thresh_slide", value=c(input$forest_thresh_nume_lower,
                                                               input$forest_thresh_nume_upper))
+  })
+  
+  
+  observeEvent(input$update, {
+    # prevent nasty values :)
+    updateNumericInput(session, "access_thresh_nume_lower", 
+                       value=max(0, input$access_thresh_nume_lower))
+    updateNumericInput(session, "access_thresh_nume_upper", 
+                       value=max(input$access_thresh_nume_lower + 1,
+                                 min(100, input$access_thresh_nume_upper)))
+    updateNumericInput(session, "forest_thresh_nume_lower",
+                       value=max(0, input$forest_thresh_nume_lower))
+    updateNumericInput(session, "forest_thresh_nume_upper",
+                       value=max(input$forest_thresh_nume_lower + 1,
+                                 min(100, input$forest_thresh_nume_upper)))
+  })
+  
+  
+  # make changes to access mask when user edits access bounds
+  accessedit = eventReactive(input$update, {
+    tmp = access_idn
+    values(tmp)[values(access_idn) < quantile(tmp, input$access_thresh_slide[1]/100)] = NA
+    values(tmp)[values(access_idn) > quantile(tmp, input$access_thresh_slide[2]/100)] = NA
+    tmp
   })
   
   # make changes to forest mask given user preferences
