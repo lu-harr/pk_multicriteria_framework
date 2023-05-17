@@ -148,8 +148,9 @@ server <- (function(input, output, session){
     updateNumericInput(session, "forest_thresh_nume_upper",
                        value=max(input$forest_thresh_nume_lower + 1,
                                  min(100, input$forest_thresh_nume_upper)))
+    updateNumericInput(session, "dist_sites",
+                       value=max(input$dist_sites, 0))
   })
-  
   
   # make changes to access mask when user edits access bounds
   accessedit = eventReactive(input$update, {
