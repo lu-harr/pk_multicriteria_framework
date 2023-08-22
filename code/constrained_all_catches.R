@@ -37,7 +37,7 @@ plot_box = extent(trim(kalimantan_ras))
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   save.usr = par()$usr
   mtext("Accessibility", 2, 1, cex=1.3)
-  points(missing_points(cand_prod_catch, cand_prod_access_catch), col=excluded_point, pch=4, lwd=8)
+  points(missing_points(cand_prod_catch, cand_prod_access_catch), col=excluded_point, pch=3, lwd=8)
   points(cand_prod_access_catch, col=point_col, pch=4, lwd=8)
   sel=c(1,4,6)
   text(cand_prod_access_catch$lon[sel]-0.5, cand_prod_access_catch$lat[sel]-0.1, 
@@ -178,7 +178,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Forest", 2, 1, cex=1.3)
-  points(missing_points(cand_prod_catch, cand_prod_forest_catch), pch=4, lwd=8, col=excluded_point)
+  points(missing_points(cand_prod_catch, cand_prod_forest_catch), pch=3, lwd=8, col=excluded_point)
   points(cand_prod_forest_catch, pch=4, lwd=8, col=point_col) # interesting ... removes a lot of coastal sel points
   text(95.5, -5.5, "C", font=2, cex=1.5)
   sel = c(3,8,10)
@@ -260,7 +260,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(mean_sd_prod*forest_constraint_mask, col=purps(100), add=TRUE, 
        legend=FALSE, legend.mar=6)
   points(missing_points(cand_prod_catch, cand_prod_forest_catch), col=excluded_point, 
-         pch=4, lwd=5, cex=0.8)
+         pch=3, lwd=5, cex=0.8)
   points(cand_prod_forest_catch, col=point_col, pch=4, cex=0.8, lwd=5)
   text(x=cand_prod_forest_catch$lon+0.06, y=cand_prod_forest_catch$lat+0.06, 
        labels=1:10, col=lab_col, cex=1.1)
@@ -324,7 +324,7 @@ plot_box = extent(trim(kalimantan_ras))
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Uncertainty-weighted", 1, 1, cex=1.3)
   mtext("Distance Between Sites (50km)", 2, 1, cex=1.3)
-  points(missing_points(cand_prod_catch, cand_prod_dist_catch), pch=4, lwd=8, col=excluded_point)
+  points(missing_points(cand_prod_catch, cand_prod_dist_catch), pch=3, lwd=8, col=excluded_point)
   points(cand_prod_dist_catch, pch=4, lwd=8, col=point_col)
   sel=c(1,3,5,10)
   text(cand_prod_dist_catch$lon[sel]-0.35, 
@@ -365,7 +365,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(uncert_dist_catch$excluded_ras, col=purps(100), add=TRUE, 
        legend=FALSE, legend.mar=6)
   points(missing_points(cand_prod_catch, cand_prod_dist_catch), col=excluded_point, 
-         pch=4, lwd=5, cex=0.8)
+         pch=3, lwd=5, cex=0.8)
   points(cand_prod_dist_catch, col=point_col, pch=4, cex=0.8, lwd=5)
   text(x=cand_prod_dist_catch$lon+0.06, y=cand_prod_dist_catch$lat+0.06, 
        labels=1:10, col=lab_col, cex=1.1)
@@ -381,7 +381,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Precision-weighted", 1, 1, cex=1.3)
-  points(missing_points(cand_quot_catch, cand_quot_dist_catch), pch=4, lwd=8, col=excluded_point)
+  points(missing_points(cand_quot_catch, cand_quot_dist_catch), pch=3, lwd=8, col=excluded_point)
   points(cand_quot_dist_catch, pch=4, lwd=8, col=point_col)
   text(95.5, -5.5, "F", font=2, cex=1.5)
   sel=c(2,3,4,5,6,8,10)
@@ -418,7 +418,7 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, xaxt="n", yaxt="n", ann=FALSE, colNA="white", legend.mar=-1)
   #plot(mean_sd_quot, col=purps(100), legend=F, legend.mar=6, add=TRUE)
   points(missing_points(cand_quot_catch, cand_quot_dist_catch), cex=0.8,
-         pch=4, lwd=5, col=excluded_point)
+         pch=3, lwd=5, col=excluded_point)
   points(cand_quot_dist_catch, col=point_col, pch=4, cex=0.8, lwd=5)
   text(x=cand_quot_dist_catch$lon+0.02, y=cand_quot_dist_catch$lat+0.02, labels=1:10, 
        col=lab_col, cex=1.1)
@@ -431,7 +431,7 @@ plot_box = extent(trim(kalimantan_ras))
   #legend(0.85,-0.95, "Excluded sites", fill=excluded_col, cex=1.2)
   legend(0.7,-0.92, c("Excluded sites", "Site selected in absence of constraint"), 
          col = c(excluded_col, excluded_point), lty=NA,
-         pch = c(22, 4), pt.cex = c(3.5, 1), lwd=c(1,7),
+         pch = c(22, 3), pt.cex = c(3.5, 1), lwd=c(1,7),
          pt.bg = c(excluded_col, NA),
          cex=1.2)
   par(omd=c(0.4,0.9,0,1))

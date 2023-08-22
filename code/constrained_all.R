@@ -43,7 +43,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Accessibility", 2, 1, cex=1.3)
-  points(missing_points(cand_prod, cand_prod_access), col=excluded_point, pch=4, lwd=8, cex=1.1)
+  points(missing_points(cand_prod, cand_prod_access), col=excluded_point, pch=3, lwd=8, cex=1.1)
   points(cand_prod_access, col=point_col, pch=4, lwd=8)
   sel = c(3,4,8,10)
   plot_sites_radius_multicrit(cand_prod_access[sel,], 
@@ -133,7 +133,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Forest", 2, 1, cex=1.3)
-  points(missing_points(cand_prod, cand_prod_forest), pch=4, lwd=8, col=excluded_point, cex=1.1)
+  points(missing_points(cand_prod, cand_prod_forest), pch=3, lwd=8, col=excluded_point, cex=1.1)
   points(cand_prod_forest, pch=4, lwd=8, col=point_col) # interesting ... removes a lot of coastal sel points
   text(118.5, -5.5, "C", font=2, cex=1.5)
   sel = c(6,9,10)
@@ -228,7 +228,7 @@ plot_box = extent(trim(kalimantan_ras))
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Uncertainty-weighted", 1, 1, cex=1.3)
   mtext("Distance Between Sites (50km)", 2, 1, cex=1.3)
-  points(missing_points(cand_prod, cand_prod_dist), pch=4, lwd=8, col=excluded_point, cex=1.1)
+  points(missing_points(cand_prod, cand_prod_dist), pch=3, lwd=8, col=excluded_point, cex=1.1)
   points(cand_prod_dist, pch=4, lwd=8, col=point_col)
   sel = c(7,8,9)
   plot_sites_radius_multicrit(cand_prod_dist[sel,], 
@@ -262,7 +262,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   mtext("Precision-weighted", 1, 1, cex=1.3)
-  points(missing_points(cand_quot, cand_quot_dist), pch=4, lwd=8, col=excluded_point, cex=1.1)
+  points(missing_points(cand_quot, cand_quot_dist), pch=3, lwd=8, col=excluded_point, cex=1.1)
   points(cand_quot_dist, pch=4, lwd=8, col=point_col)
   text(118.5, -5.5, "F", font=2, cex=1.5)
   # label kalimantan sites
@@ -297,7 +297,7 @@ plot_box = extent(trim(kalimantan_ras))
   #0.7,-0.9
   legend(0.7,-0.92, c("Excluded sites", "Site selected in absence of constraint"), 
          col = c(excluded_col, excluded_point), lty=NA,
-         pch = c(22, 4), pt.cex = c(3.5, 1), lwd=c(1,7),
+         pch = c(22, 3), pt.cex = c(3.5, 1), lwd=c(1,7),
          pt.bg = c(excluded_col, NA),
          cex=1.2)
   #legend(0.7,-1, "Site selected in absence of constraint", 

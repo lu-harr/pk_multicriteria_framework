@@ -13,7 +13,7 @@ library(rgdal) # spdf
 library(dplyr) # setdiff
 library(rgdal)
 
-plotpath = "/output/"
+plotpath = "output/"
 
 source("code/get_distance_catchments.R")
 
@@ -191,9 +191,9 @@ values(access_constraint_mask)[!is.na(values(access_constraint_mask))] = 1
 
 
 # FOREST CONSTRAINT MASK
-intact_forest = projectRaster(seasia_covs$forest_intact, preds_sry_nw$mean)
+intact_forest = projectRaster(seasia_forest$forest_intact, preds_sry_nw$mean)
 intact_forest = mask(intact_forest, preds_sry_nw$mean)
-disturbed_forest = projectRaster(seasia_covs$forest_disturbed, preds_sry_nw$mean)
+disturbed_forest = projectRaster(seasia_forest$forest_disturbed, preds_sry_nw$mean)
 disturbed_forest = mask(disturbed_forest, preds_sry_nw$mean)
 
 # aggregated forest surface: intact + disturbed values

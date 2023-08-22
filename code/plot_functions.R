@@ -15,12 +15,13 @@ line_col = "#fc7b03"
 lab_col = "#fc7b03"
 # ^ atm running with a burnt orange over the purps
 
-# there's a light orange here or a light green ..
+# there's a light orange here or a light green .. nope light blue
 #excluded_col = "#f7dfdf"
-excluded_col = "#ebf5e1"
 excluded_col = "#e6f1da"
-# and here's an apple green ... :/
-excluded_point = "#6dbd1c"
+excluded_col = "#d2f2f2"
+# and here's an apple green ... :/ nope now it's more of a blue
+#excluded_point = "#1cbd85"
+excluded_point = "#1cbdbd"
 
 borneo_sf = st_as_sf(borneo_remainder)
 
