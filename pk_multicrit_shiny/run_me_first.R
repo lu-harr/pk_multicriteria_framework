@@ -74,8 +74,12 @@ purps = colorRampPalette(c(purps, darkpurp))
 point_col = "#fc7b03"
 line_col = "#fc7b03"
 lab_col = "#fc7b03"
-excluded_col = "#e6f1da"
-excluded_point = "#6dbd1c"
+# excluded_col = "#e6f1da"
+# excluded_point = "#6dbd1c"
+# swapping greens (above) for blues (below) so that there's a bit more 
+# differentiation for R-G colourblind users
+excluded_col = "#d2f2f2"
+excluded_point = "#1cbdbd"
 
 # grab some shps ... actually need to put borneo_remainder into plots
 malaysia_shp = malariaAtlas::getShp(country="Malaysia", admin_level = c("admin1"))

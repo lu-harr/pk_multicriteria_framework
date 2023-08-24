@@ -252,7 +252,7 @@ server <- (function(input, output, session){
       
       if (input$include_excluded_sites == TRUE){
         # plot excluded sites
-        points(ranked_sites$m[,"lon"], ranked_sites$m[,"lat"], col=excluded_point, lwd=6, pch=4)
+        points(ranked_sites$m[,"lon"], ranked_sites$m[,"lat"], col=excluded_point, lwd=6, pch=3)
       }
       
       points(ranked_sites$d[,"lon"], ranked_sites$d[,"lat"], col=point_col, lwd=6, pch=4)
