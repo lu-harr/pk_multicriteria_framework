@@ -23,13 +23,13 @@ cand_quot_dist = all_pix[cands$precis_dist,]
 plot_box = extent(trim(kalimantan_ras))
 
 {png(paste0(plotpath, "constrained_all_pix.png"),
-     # width = 10000,
-     # height = 8000,
-     # pointsize = 30,
-     # res=300)
-     width = 2500,
-     height = 2000,
-     pointsize = 30)
+     width = 10000,
+     height = 8000,
+     pointsize = 30,
+     res=300)
+     # width = 2500,
+     # height = 2000,
+     # pointsize = 30)
      
   
   par(mfrow=c(3,2), mar=c(0,0,0.1,0.1), oma=c(9.1,3.1,0.1,0.1), xpd=TRUE)
