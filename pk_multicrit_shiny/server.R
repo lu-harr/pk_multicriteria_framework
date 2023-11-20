@@ -3,6 +3,10 @@ source("run_me_first.R")
 # fixing up accepted values for numeric inputs ...
 # still something funny happening for forest
 
+# I always forget how to redeploy ...
+# library(rsconnect)
+# deployApp()
+
 server <- (function(input, output, session){
   
   # I don't think shinyBS is doing the thing for the version of shiny on shinyapps.io?
