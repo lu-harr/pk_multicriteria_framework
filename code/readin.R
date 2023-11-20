@@ -102,7 +102,7 @@ cusp_val = 0.5
 
 static_select = function(objective_surface, pointsdf, nsites=10, poly_flag=FALSE,
                          verbose=FALSE, obj_col=FALSE){
-  obj_vals = extract(objective_surface, as.data.frame(pointsdf[,c("lon", "lat")]))
+  obj_vals = raster::extract(objective_surface, as.data.frame(pointsdf[,c("lon", "lat")]))
   keeps = seq(1:nrow(pointsdf))[!is.na(obj_vals)]
   pointsdf = pointsdf[keeps,]
   # this chunk was for removing excluded pixels from mean catchment calculations:
@@ -133,7 +133,7 @@ static_select = function(objective_surface, pointsdf, nsites=10, poly_flag=FALSE
 
 missing_points = function(old, new){
   # to compare constrained and unconstrained sets
-  return(setdiff(as.data.frame(old[,c("lon","lat")]), as.data.frame(new[,c("lon","lat")])))
+  return(generics::setdiff(as.data.frame(old[,c("lon","lat")]), as.data.frame(new[,c("lon","lat")])))
 }
 
 ###############################################################################
@@ -168,7 +168,7 @@ greedy_select_mindist = function(objective_surf,
     shadow = getDistanceCatchmentMulticrit(pointsdf[new_ind, c("lon","lat")], radius, objective_surf)
     shadows = append(shadows, shadow$pol)
     values(excluded_ras)[which(!is.na(values(shadow$ras)))] = NA # apply constraint to raster
-    pointsdf = pointsdf[!is.na(extract(excluded_ras, pointsdf[,c("lon","lat")])),]
+    pointsdf = pointsdf[!is.na(raster::extract(excluded_ras, pointsdf[,c("lon","lat")])),]
   }
   return(list(out_points=out_points, 
               excluded_ras=excluded_ras,
