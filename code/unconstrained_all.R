@@ -19,13 +19,13 @@ cand_quot_catch = as.data.frame(polydf[cands$precis_uncon_catch, c("lon", "lat")
 plot_box = extent(trim(kalimantan_ras))
 
 {png(paste0(plotpath, "unconstrained_all.png"),
-     # width = 2500,
-     # height = 1410,
-     # pointsize = 30)
-     width = 10000,
-     height = 5600,
-     pointsize = 30,
-     res=300)
+     width = 2500,
+     height = 1410,
+     pointsize = 30)
+     # width = 10000,
+     # height = 5600,
+     # pointsize = 30,
+     # res=300)
   
   par(mfrow=c(2,2), mar=c(0,0,0.1,0.1), oma=c(8.1,3.1,0.1,0.1), xpd=TRUE)
   check1 = par()
@@ -36,9 +36,9 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   save.usr = par()$usr
-  mtext("Individual Pixels", 2, 1, cex=1.3)
+  mtext("Individual Pixels", 2, 1, cex=1.5)
   points(cand_prod, col=point_col, pch=4, lwd=8)
-  text(118.5, -5.5, "A", font=2, cex=1.2)
+  text(118.5, -5.5, "(a)", cex=1.6)
   # label kalimantan sites
   sel = c(3,4,5)
   plot_sites_radius_multicrit(cand_prod[sel,], 
@@ -90,7 +90,7 @@ plot_box = extent(trim(kalimantan_ras))
                               rank_cutoff = FALSE, n_toadstools=60,
                               lab_col=lab_col, line_col=line_col,
                               gap=0.9)
-  text(118.5, -5.5, "B", font=2, cex=1.2)
+  text(118.5, -5.5, "(b)", cex=1.6)
   
   # inset plot
   v = par("usr")
@@ -121,10 +121,10 @@ plot_box = extent(trim(kalimantan_ras))
        xlab="", ylab="", yaxt="n", xaxt="n")
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Uncertainty-weighted", 1, 1, cex=1.3)
-  mtext("Mean Objective in 10km Catchment", 2, 1, cex=1.3)
+  mtext("Uncertainty-weighted", 1, 1, cex=1.5)
+  mtext("Mean Objective in 10km Catchment", 2, 1, cex=1.5)
   points(cand_prod_catch, pch=4, lwd=8, col=point_col)
-  text(118.5, -5.5, "C", font=2, cex=1.2)
+  text(118.5, -5.5, "(c)", cex=1.6)
   sel = c(7,8,9,10)
   plot_sites_radius_multicrit(cand_prod_catch[sel,], 
                               label_radius = (plot_box[2] - plot_box[1])/1.5,
@@ -179,7 +179,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(mean_sd_quot, col=purps(100),
        legend=FALSE, legend.mar=-1, xlab="", ylab="",
        xaxt="n", yaxt="n")
-  mtext("Precision-weighted", 1, 1, cex=1.3)
+  mtext("Precision-weighted", 1, 1, cex=1.5)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   
@@ -191,7 +191,7 @@ plot_box = extent(trim(kalimantan_ras))
                               ranked_names = sel, rank_cutoff = FALSE, 
                               n_toadstools=40,
                               lab_col=lab_col, line_col=line_col)
-  text(118.5, -5.5, "D", font=2, cex=1.2)
+  text(118.5, -5.5, "(d)", cex=1.6)
   
   # inset plot
   v = par("usr")
@@ -228,7 +228,7 @@ plot_box = extent(trim(kalimantan_ras))
   par(omd=c(0.25,0.75,0,1))
   plot(mean_sd_prod, col=purps(100),
        horizontal=TRUE, legend.mar=2, legend.only=TRUE,
-       legend.args=list(text="Objective value", side=3, line=0.5, cex=1.3),
-       axis.args=list(at=c(0.05,0.7), labels=c("Low","High"), cex.axis=1.3))
+       legend.args=list(text="Objective value", side=3, line=0.5, cex=1.5),
+       axis.args=list(at=c(0.05,0.7), labels=c("Low","High"), cex.axis=1.5))
   
   dev.off()}

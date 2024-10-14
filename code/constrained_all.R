@@ -22,14 +22,18 @@ cand_quot_dist = all_pix[cands$precis_dist,]
 
 plot_box = extent(trim(kalimantan_ras))
 
+mtext_size <- 1.5
+subfig_size <- 1.7
+
+
 {png(paste0(plotpath, "constrained_all_pix.png"),
-     width = 10000,
-     height = 8000,
-     pointsize = 30,
-     res=300)
-     # width = 2500,
-     # height = 2000,
-     # pointsize = 30)
+     # width = 10000,
+     # height = 8000,
+     # pointsize = 30,
+     # res=300)
+     width = 2500,
+     height = 2000,
+     pointsize = 30)
      
   
   par(mfrow=c(3,2), mar=c(0,0,0.1,0.1), oma=c(9.1,3.1,0.1,0.1), xpd=TRUE)
@@ -42,7 +46,7 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Accessibility", 2, 1, cex=1.3)
+  mtext("Accessibility", 2, 1, cex=mtext_size)
   points(missing_points(cand_prod, cand_prod_access), col=excluded_point, pch=3, lwd=8, cex=1.1)
   points(cand_prod_access, col=point_col, pch=4, lwd=8)
   sel = c(3,4,8,10)
@@ -63,7 +67,7 @@ plot_box = extent(trim(kalimantan_ras))
   lines(c(cand_prod_access[9,1], 101), c(cand_prod_access[9,2], 4), 
         col=line_col, lwd=3)
   text(c(101), c(4), labels=c(9), col=lab_col, cex=1.5, pos=4)
-  text(118.5, -5.5, "A", font=2, cex=1.5)
+  text(118.5, -5.5, "(a)", cex=subfig_size)
   # add labels back in .. grab from old constrained_all
   
   # B. precision-weighted access constrained
@@ -96,7 +100,7 @@ plot_box = extent(trim(kalimantan_ras))
                               rank_cutoff = FALSE, n_toadstools=60,
                               lab_col=lab_col, line_col=line_col,
                               gap=0.9)
-  text(118.5, -5.5, "B", font=2, cex=1.5)
+  text(118.5, -5.5, "(b)", cex=subfig_size)
   
   # inset plot
   v = par("usr")
@@ -132,10 +136,10 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Forest", 2, 1, cex=1.3)
+  mtext("Forest", 2, 1, cex=mtext_size)
   points(missing_points(cand_prod, cand_prod_forest), pch=3, lwd=8, col=excluded_point, cex=1.1)
   points(cand_prod_forest, pch=4, lwd=8, col=point_col) # interesting ... removes a lot of coastal sel points
-  text(118.5, -5.5, "C", font=2, cex=1.5)
+  text(118.5, -5.5, "(c)", cex=subfig_size)
   sel = c(6,9,10)
   plot_sites_radius_multicrit(cand_prod_forest[sel,],
                               label_radius = (plot_box[2] - plot_box[1])/1.5,
@@ -193,7 +197,7 @@ plot_box = extent(trim(kalimantan_ras))
                               rank_cutoff = FALSE, n_toadstools=60,
                               lab_col=lab_col, line_col=line_col,
                               gap=0.9)
-  text(118.5, -5.5, "D", font=2, cex=1.5)
+  text(118.5, -5.5, "(d)", cex=subfig_size)
   # inset plot
   v = par("usr")
   v = c(v[1], v[1] + (v[2] - v[1])*0.165,
@@ -226,8 +230,8 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Uncertainty-weighted", 1, 1, cex=1.3)
-  mtext("Distance Between Sites (50km)", 2, 1, cex=1.3)
+  mtext("Uncertainty-weighted", 1, 1, cex=mtext_size)
+  mtext("Distance Between Sites (50km)", 2, 1, cex=mtext_size)
   points(missing_points(cand_prod, cand_prod_dist), pch=3, lwd=8, col=excluded_point, cex=1.1)
   points(cand_prod_dist, pch=4, lwd=8, col=point_col)
   sel = c(7,8,9)
@@ -251,7 +255,7 @@ plot_box = extent(trim(kalimantan_ras))
                               ranked_names = sel,
                               rank_cutoff = FALSE, n_toadstools=35,
                               line_col=line_col, lab_col=lab_col, gap=0.94)
-  text(118.5, -5.5, "E", font=2, cex=1.5)
+  text(118.5, -5.5, "(e)", cex=subfig_size)
   
   # F. precision-weighted distance constrained
   plot(mean_sd_quot, col=excluded_col,
@@ -261,10 +265,10 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Precision-weighted", 1, 1, cex=1.3)
+  mtext("Precision-weighted", 1, 1, cex=mtext_size)
   points(missing_points(cand_quot, cand_quot_dist), pch=3, lwd=8, col=excluded_point, cex=1.1)
   points(cand_quot_dist, pch=4, lwd=8, col=point_col)
-  text(118.5, -5.5, "F", font=2, cex=1.5)
+  text(118.5, -5.5, "(f)", cex=subfig_size)
   # label kalimantan sites
   plot_box = extent(trim(kalimantan_ras))
   sel=c(1,3,5,8,10)
@@ -299,7 +303,7 @@ plot_box = extent(trim(kalimantan_ras))
          col = c(excluded_col, excluded_point), lty=NA,
          pch = c(22, 3), pt.cex = c(3.5, 1), lwd=c(1,7),
          pt.bg = c(excluded_col, NA),
-         cex=1.2)
+         cex=1.35)
   #legend(0.7,-1, "Site selected in absence of constraint", 
   #       col=excluded_point, cex=1.2, bty="n", pch=4, lwd=8, lty=NA)
   par(omd=c(0.4,0.9,0,1))

@@ -110,7 +110,7 @@ scale_prod = (scale_prod - min(scale_prod))/(max(scale_prod) - min(scale_prod))
 par(mar=c(9.1,1,4.1,0.5), mfrow=c(1,2), oma=c(13,3.5,0,0.1), xpd=NA)
 plot(log(tmp1), col=viridis(12), 
      #xlab="", ylab="", 
-     main="A. Uncertainty-weighted", legend=FALSE, legend.mar=0)
+     main="(a) Uncertainty-weighted", legend=FALSE, legend.mar=0)
 points(means[seq(1, length(means))], sds[seq(1, length(means))], 
        cex=0.7, col="white", lwd=2)
 mtext("Mean predicted relative risk x standard deviation", line=0.5)
@@ -119,7 +119,7 @@ mtext(1, text="Mean Predicted Relative Risk", line=2.5)
 
 plot(log(tmp2), col=viridis(12),yaxt="n",
      #xlab="", #ylab="Standard Deviation", 
-     main="B. Precision-weighted", legend=FALSE, legend.mar=0)
+     main="(b) Precision-weighted", legend=FALSE, legend.mar=0)
 points(means[seq(1, length(means))], sds[seq(1, length(means))], 
        cex=0.7, col="white", lwd=2)
 mtext("Mean predicted relative risk / standard deviation", line=0.5)

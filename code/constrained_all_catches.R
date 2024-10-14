@@ -15,15 +15,17 @@ cand_quot_dist_catch = as.data.frame(polydf[cands$precis_dist_catch, c("lon", "l
 
 plot_box = extent(trim(kalimantan_ras))
 
+subfig_size <- 1.7
+mtext_size <- 1.7
 
 {png(paste0(plotpath, "constrained_all_catches.png"),
-     # width = 2500,
-     # height = 2000,
-     # pointsize = 30)#,
-     width = 10000,
-     height = 8000,
-     pointsize = 30,
-     res=300)
+     width = 2500,
+     height = 2000,
+     pointsize = 30)#,
+     # width = 10000,
+     # height = 8000,
+     # pointsize = 30,
+     # res=300)
   
   par(mfrow=c(3,2), mar=c(0,0,0.1,0.1), oma=c(9.1,3.1,0.1,0.1), xpd=TRUE)
   check1 = par()
@@ -36,7 +38,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   save.usr = par()$usr
-  mtext("Accessibility", 2, 1, cex=1.3)
+  mtext("Accessibility", 2, 1, cex=mtext_size)
   points(missing_points(cand_prod_catch, cand_prod_access_catch), col=excluded_point, pch=3, lwd=8)
   points(cand_prod_access_catch, col=point_col, pch=4, lwd=8)
   sel=c(1,4,6)
@@ -48,7 +50,7 @@ plot_box = extent(trim(kalimantan_ras))
         c(cand_prod_access_catch$lat[7],3), col=line_col, lwd=3)
   text(118.5, 3, col=lab_col, labels=7, cex=1.5, adj=c(0,0))
   
-  text(95.5, -5.5, "A", font=2, cex=1.5)
+  text(95.5, -5.5, "(a)", cex=subfig_size)
   # will require two insets ...
   v = par("usr")
   v = c(v[1] + (v[2] - v[1])*0.38, v[1] + (v[2] - v[1])*0.545,
@@ -135,7 +137,7 @@ plot_box = extent(trim(kalimantan_ras))
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   points(cand_quot_access_catch, col=point_col, pch=4, lwd=8)
-  text(95.5, -5.5, "B", font=2, cex=1.5)
+  text(95.5, -5.5, "(b)", cex=subfig_size)
   sel=9:10
   plot_sites_radius_multicrit(cand_quot_access_catch[sel,],
                               label_radius = (plot_box[2] - plot_box[1])/2*1.1, # using x axis
@@ -177,10 +179,10 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Forest", 2, 1, cex=1.3)
+  mtext("Forest", 2, 1, cex=mtext_size)
   points(missing_points(cand_prod_catch, cand_prod_forest_catch), pch=3, lwd=8, col=excluded_point)
   points(cand_prod_forest_catch, pch=4, lwd=8, col=point_col) # interesting ... removes a lot of coastal sel points
-  text(95.5, -5.5, "C", font=2, cex=1.5)
+  text(95.5, -5.5, "(c)", cex=subfig_size)
   sel = c(3,8,10)
   plot_sites_radius_multicrit(cand_prod_forest_catch[sel,],
                               label_radius = (plot_box[2] - plot_box[1])/1.02,
@@ -277,7 +279,7 @@ plot_box = extent(trim(kalimantan_ras))
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
   points(cand_quot_forest_catch, pch=4, lwd=8, col=point_col)
   #missing_points(cand_quot_catch, cand_quot_forest_catch)
-  text(95.5, -5.5, "D", font=2, cex=1.5)
+  text(95.5, -5.5, "(d)", cex=subfig_size)
   sel=9:10
   plot_sites_radius_multicrit(cand_quot_forest_catch[sel,],
                               label_radius = (plot_box[2] - plot_box[1])/2*1.1, # using x axis
@@ -322,8 +324,8 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Uncertainty-weighted", 1, 1, cex=1.3)
-  mtext("Distance Between Sites (50km)", 2, 1, cex=1.3)
+  mtext("Uncertainty-weighted", 1, 1, cex=mtext_size)
+  mtext("Distance Between Sites (50km)", 2, 1, cex=mtext_size)
   points(missing_points(cand_prod_catch, cand_prod_dist_catch), pch=3, lwd=8, col=excluded_point)
   points(cand_prod_dist_catch, pch=4, lwd=8, col=point_col)
   sel=c(1,3,5,10)
@@ -337,7 +339,7 @@ plot_box = extent(trim(kalimantan_ras))
         c(cand_prod_dist_catch$lat[7],cand_prod_dist_catch$lat[7]+0.5), col=line_col, lwd=3)
   # text(cand_prod_dist_catch$lon[4], 
   #      cand_prod_dist_catch$lat[4]-0.35, labels=4, col="red", cex=1.3)
-  text(95.5, -5.5, "E", font=2, cex=1.5)
+  text(95.5, -5.5, "(e)", cex=subfig_size)
   sel=c(6,8,9)
   plot_sites_radius_multicrit(cand_prod_dist_catch[sel,],
                               label_radius = (plot_box[2] - plot_box[1])/2*1.55, # using x axis
@@ -380,10 +382,10 @@ plot_box = extent(trim(kalimantan_ras))
        legend=FALSE, legend.mar=6, add=TRUE)
   plot(borneo_remainder, border=darkpurp, add=TRUE)
   patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE)
-  mtext("Precision-weighted", 1, 1, cex=1.3)
+  mtext("Precision-weighted", 1, 1, cex=mtext_size)
   points(missing_points(cand_quot_catch, cand_quot_dist_catch), pch=3, lwd=8, col=excluded_point)
   points(cand_quot_dist_catch, pch=4, lwd=8, col=point_col)
-  text(95.5, -5.5, "F", font=2, cex=1.5)
+  text(95.5, -5.5, "(f)", cex=subfig_size)
   sel=c(2,3,4,5,6,8,10)
   plot_sites_radius_multicrit(cand_quot_dist_catch[sel,],
                               label_radius = (plot_box[2] - plot_box[1])/2*1.15, # using x axis
@@ -433,7 +435,7 @@ plot_box = extent(trim(kalimantan_ras))
          col = c(excluded_col, excluded_point), lty=NA,
          pch = c(22, 3), pt.cex = c(3.5, 1), lwd=c(1,7),
          pt.bg = c(excluded_col, NA),
-         cex=1.2)
+         cex=1.35)
   par(omd=c(0.4,0.9,0,1))
   plot(mean_sd_prod, col=purps(100),
        horizontal=TRUE, legend.mar=2, legend.only=TRUE,

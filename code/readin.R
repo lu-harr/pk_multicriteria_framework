@@ -11,7 +11,6 @@ library(dismo) # dist catches
 library(rgeos) # dist catches
 library(rgdal) # spdf
 library(dplyr) # setdiff
-library(rgdal)
 library(malariaAtlas)
 
 plotpath = "output/"
@@ -23,7 +22,7 @@ source("code/get_distance_catchments.R")
 # idn_shp = shapefile("data/admin/admin2013_1.shp")
 idn_shp = st_read("data/admin/admin2013_1.shp")
 idn_shp = subset(idn_shp, idn_shp$COUNTRY_ID == "IDN")
-IDN_ras <- raster("data/admin/admin_IDN.tif")
+IDN_ras <- raster("output/admin_IDN.tif")
 sumatera_shp = subset(idn_shp, idn_shp$NAME %in% c("SUMATERA UTARA",
                                                    "SUMATERA BARAT",
                                                    "SUMATERA SELATAN",

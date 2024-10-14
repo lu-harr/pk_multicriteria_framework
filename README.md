@@ -7,3 +7,5 @@ The code for an RShiny application that demonstrates the site selection workflow
 The app is located [here](http://lucyharrison.shinyapps.io/pk_multicrit_shiny/).
 
 ![image](pk_multicrit_shiny/workflow_with_grids.pdf)
+
+All code was run under R version 3.6.1 (2019-07-05).
