@@ -100,6 +100,9 @@ values(tmp2) = locs[,1]*locs[,2]
 scale_prec = means/sds
 scale_prod = means*sds
 
+best_prec <- order(scale_prec, decreasing = TRUE)[1:10]
+best_prod <- order(scale_prod, decreasing = TRUE)[1:10]
+
 scale_prec = (scale_prec - min(scale_prec))/(max(scale_prec) - min(scale_prec))
 scale_prod = (scale_prod - min(scale_prod))/(max(scale_prod) - min(scale_prod))
 
@@ -113,6 +116,7 @@ plot(log(tmp1), col=viridis(12),
      main="(a) Uncertainty-weighted", legend=FALSE, legend.mar=0)
 points(means[seq(1, length(means))], sds[seq(1, length(means))], 
        cex=0.7, col="white", lwd=2)
+points(means[best_prod], sds[best_prod], col="blue", lwd=3, pch=4)
 mtext("Mean predicted relative risk x standard deviation", line=0.5)
 mtext(2, text="Standard Deviation", line=2)
 mtext(1, text="Mean Predicted Relative Risk", line=2.5)
@@ -122,6 +126,7 @@ plot(log(tmp2), col=viridis(12),yaxt="n",
      main="(b) Precision-weighted", legend=FALSE, legend.mar=0)
 points(means[seq(1, length(means))], sds[seq(1, length(means))], 
        cex=0.7, col="white", lwd=2)
+points(means[best_prec], sds[best_prec], col="blue", lwd=3, pch=4)
 mtext("Mean predicted relative risk / standard deviation", line=0.5)
 mtext(1, text="Mean Predicted Relative Risk", line=2.5)
 
