@@ -24,6 +24,39 @@ source("code/readin.R")
   #     type="n", cex.lab=1.3)
   dev.off()}
 
+library(RColorBrewer)
+pal_sig = colorRampPalette(rev(c(brewer.pal(11,"PRGn")[2:5], 
+                                 brewer.pal(9,"YlOrRd")[1], # make middle nice and pissy
+                                 brewer.pal(11,"PRGn")[7:10])))
+pal_sd = colorRampPalette(c(rev(brewer.pal(9,"YlOrBr")[1:4]), brewer.pal(9,"Purples")[3:9]))
+
+{png(paste0(plotpath, 'brt_mean_sd.png'),
+     width = 2500,
+     height = 2350,
+     pointsize = 40)
+  par(mar=c(0.1,0.1,0.1,4.1), oma=c(0.1,0.1,0.1,0.1), mfrow=c(2,1))
+  plot(preds_sry_nw$mean, col = pal_sig(100), 
+       xlab = "", ylab = "", xaxt="n", yaxt="n",
+       #main = "Boolean constraint: 20% Least Accessible Sites Excluded",
+       cex.main=1.4, cex.lab=1.3, legend.mar=3.5,
+       legend.args=list(text="Mean", font=2, side=2, line=1, cex=1.4))
+  plot(borneo_remainder, border=darkpurp, add=TRUE, lwd=2)
+  patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE, lwd=2)
+  text(96, -5.5, "(a)", cex=1.5)
+  
+  plot(preds_sry_nw$sd, col = pal_sd(100),
+       xlab = "", ylab = "", xaxt="n", yaxt="n",
+       #main = "Boolean constraint: 20% Least Forested Sites Excluded",
+       cex.main=1.4, cex.lab=1.3, legend.mar=3.5,
+       legend.args=list(text="Standard deviation", font=2, side=2, line=1, cex=1.4))
+  plot(borneo_remainder, border=darkpurp, add=TRUE, lwd=2)
+  patternLayer(borneo_sf, "right2left", density=2, col=darkpurp, add=TRUE, lwd=2)
+  text(96, -5.5, "(b)", cex=1.5)
+  #mtext("Boolean constraints: 20% sites excluded", 3, 1, outer=TRUE, cex=1.5)
+  dev.off()}
+
+
+
 # Moran's I
 # Moran(preds_sry_nw$mean)
 # Moran(preds_sry_nw$sd)
