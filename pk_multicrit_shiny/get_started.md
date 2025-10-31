@@ -19,8 +19,3 @@ There are several data layers included in this tool from external sources:
   - Intact Forest Landscapes surfaces of intact and disturbed forest (2013). Transformed into surface of total forest cover (see Supplementary Information of paper).
   
 ![image](workflow_with_grids.pdf)
-
-<h3> TODO </h3>
-
-- Rest of Borneo onto the maps ... rest of surrounding islands?
-- Should explain percentages in constraint map ... it's not intuitive (add popover)

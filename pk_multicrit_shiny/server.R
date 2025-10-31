@@ -175,7 +175,9 @@ server <- (function(input, output, session){
   
   # Putting it all together: create the overlay raster (without distance)
   # need to deal with distance constraint a little differently and apply a greedy :)
-  overlay_ras = reactiveValues(r=nw_idn_ras,
+  emptyras <- nw_idn_ras
+  values(emptyras) = NA
+  overlay_ras = reactiveValues(r=emptyras,
                                catch_polys=list())
   
   # initialise empty ranked_sites
@@ -249,7 +251,8 @@ server <- (function(input, output, session){
     plot(nw_idn_ras, xlab="", ylab="", cex.main=2,
          legend=FALSE, col=excluded_col, xaxt="n", yaxt="n")  # green map underneath :)
     plot(overlay_ras$r, add=TRUE, 
-         col = purps(100))
+         col = purps(100),
+         legend.args = list("Objective value", side = 2, line = 1))
     legend("bottomright", "Excluded sites", fill=excluded_col, bty="n")
     
     if (nrow(ranked_sites$d) > 0){
@@ -265,7 +268,7 @@ server <- (function(input, output, session){
   
   # table of selected sites
   output$sites_table <- DT::renderDataTable({
-    validate(need(nrow(ranked_sites$d > 0), "No sites selected!"))
+    validate(need(nrow(ranked_sites$d) > 0, "\n\nNo sites selected!"))
     
     # allow user to "brush" subset of selected sites in the map
     if (!is.null(input$overlay_plot_brush)){
@@ -304,7 +307,8 @@ server <- (function(input, output, session){
          xaxt="n", yaxt="n",
          main=paste0("Accessibility: ", removed_access, "%"),
          cex.main=2)
-    plot(accessedit(), add=TRUE, col=lighter_purps(100))
+    plot(accessedit(), add=TRUE, col=lighter_purps(100),
+         legend.args = list("Accessibility", side = 2, line = 1))
     legend("topright", "Excluded sites", fill=excluded_col, bty="n", cex=1.5)
     
     removed_forest = signif((1 - (ncell_nw_idn_ras - freq(x=forestedit(), value=NA)) / 
@@ -312,7 +316,8 @@ server <- (function(input, output, session){
     plot(nw_idn_ras, col=excluded_col, legend=FALSE, xlab="", ylab="",
          xaxt="n", yaxt="n", cex.main=2,
          main=paste0("Forest Cover: ", removed_forest, "%"))
-    plot(forestedit(), add=TRUE, col=lighter_purps(100))
+    plot(forestedit(), add=TRUE, col=lighter_purps(100),
+         legend.args = list("Forest cover", side = 2, line = 1))
     
     if (length(overlay_ras$catch_polys) > 0){
       catches_as_spat_polys = do.call(bind, overlay_ras$catch_polys)
