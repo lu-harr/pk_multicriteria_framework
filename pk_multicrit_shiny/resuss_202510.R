@@ -1,4 +1,8 @@
-# multicrit_shiny_resuss
+# Resuscitating shiny app: malariaAtlas package no longer provides shps to R 3.6
+# This script run with R 4.4.1.
+# No longer any need to ask malariaAtlas for shps: have just saved them to the app directory
+# (I suppose I was originally trying to write something that didn't have its own data
+# but this is path of least resistance)
 malaysia_shp = malariaAtlas::getShp(country="Malaysia", admin_level = c("admin1"))
 brunei_shp = malariaAtlas::getShp(country="Brunei Darussalam")
 malaysia_shp = malaysia_shp[malaysia_shp$name_1 %in% c("Sarawak","Sabah"),]
